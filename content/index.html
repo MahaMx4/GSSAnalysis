@@ -50,33 +50,44 @@ mydata%&gt;%
 <p><img src="index_files/figure-html/splot-1.png" width="672" />
 Figure 1 This is a scatter plot graph depicting the linear relationship between the age of the participant</p>
 <p>Model results</p>
-<pre class="r"><code>summary(mysvylm) 
-## 
-## Call:
-## svyglm(formula = age ~ age_first_child, design = age.design)
-## 
-## Survey design:
-## svydesign(id = ~1, data = mydata, fpc = fpc.srs)
-## 
-## Coefficients:
-##                  Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)     31.614649   0.095262   331.9   &lt;2e-16 ***
-## age_first_child  0.828422   0.002343   353.6   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for gaussian family taken to be 25.88)
-## 
-## Number of Fisher Scoring iterations: 2</code></pre>
+<pre class="r"><code>
+knitr::kable(data, align = &quot;lccrr&quot;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="center">estimate</th>
+<th align="center">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="center">31.6146488</td>
+<td align="center">0.0952618</td>
+<td align="right">331.8713</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">age_first_child</td>
+<td align="center">0.8284217</td>
+<td align="center">0.0023431</td>
+<td align="right">353.5621</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
 <p>Figure 2 This shows the summary statistics of the simple linear regression model.</p>
 </div>
 <div id="discussion" class="section level1">
 <h1>Discussion</h1>
 <p>The scatter plot shows there is a linear relationship between the age of the participants and the age of the first child. This signifies that the simple linear regression model is the correct model to show the relationship between these variables. This survey model utilizes the quarter 1 population data in 2017 provided by the Canadian Census data as the survey is released in the first quarter excluding the territories (<span class="citation">Statistics (2020)</span>).</p>
-<p>The model results show a p value less than 0.05 signifying that there is a statistically significant allowing us to conclude that that there is a significant relationship between the age of a participant and the age of their first child (<span class="citation">Andrade (2019)</span>).</p>
+<p>The model results shows a really small p value which is less than 0.05(&lt;2e-16) signifying that there is a statistically significant allowing us to conclude that that there is a significant relationship between the age of a participant and the age of their first child (<span class="citation">Andrade (2019)</span>). Furthermore, the t value is in the 300’s also showing that there is evidence against the null hypothesis which states no relationship between both variables therefore proving that there is a relationship between both variables (<span class="citation">Changbao and Thompson (2019)</span>).</p>
 <p>The equation given from this model is:</p>
 <pre><code>Age= 31.6 + 0.83*age of first child ± 0.095</code></pre>
-<p>We found a significant relationship (p&lt;0.001) between age of the participant and age of the first child (R^2= 0.83 ± 0.095) with a 0.83 unit increase in the age of the first child for every year older the participant is. Therefore, this shows the older a participant is the older their first child is.</p>
+<p>We found a significant relationship (p&lt;0.001) between age of the participant and age of the first child (R^2= 0.83 ± 0.095) with a 0.83 unit increase in the age of the first child for every year older the participant is. Therefore, this shows the older a participant is the older their first child is proving the hypothesis of this study.</p>
 <p>A caveat of this model is that it can not be used to predict values that are outside of the range (<span class="citation">Schneider, Hommel, and Blettner (2010)</span>). Therefore, this conclusion can only be applied to individuals within these provinces between the age of 15-80. Signifying that in another population with every unit increase of age, there may be a decrease in the age of their first child. This would imply that the age of the participants are older and they have younger children. As some participant’s did not have children their data was excluded from the analysis.</p>
 <p>Therefore, by understanding in this specific population, that as age increases the age of their first child also increases this can have a significant impact on the policies made for Canadians. These results also have larger implications as there are studies that have shown that there are significant health complications in young moms (15-19) giving birth (<span class="citation">Gibbs et al. (2015)</span>). This is mainly something seen in developing countries and not Canada, nonetheless surveys such as these that are probing what is occurring within provinces allow us to ensure that there are the necessary policies to help individuals that may be dealing with these issues. Basing policies solely on what is expected to happen within a country will not effectively meet the needs of the specific population as every population is slightly different. Therefore, this shows that this population is following the expected trend for developed countries (<span class="citation">Gibbs et al. (2015)</span>).</p>
 </div>
