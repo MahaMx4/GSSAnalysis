@@ -10,17 +10,17 @@ tags: ["R Markdown", "plot", "regression"]
 
 
 
-<div id="analyzing-the-relationship-between-age-of-the-participant-and-first-childs-age" class="section level1">
-<h1>Analyzing the Relationship between Age of the Participant and First Child’s Age</h1>
+<div id="positive-relationship-between-age-of-an-individual-and-the-age-of-their-first-child" class="section level1">
+<h1>Positive relationship between Age of an Individual and the Age of their First Child</h1>
 </div>
 <div id="abstract" class="section level1">
 <h1>Abstract</h1>
-<p>The Canadian General Social Survey (GSS) is an important survey conducted yearly in Canada as it provides valuable information that then influences policies that are made to better the lives of Canadians. The 2017 General Social Survey is being analyzed and the theme of this year was family. This survey is an online questionnaire that used stratified sampling by being distributed to individuals aged 15+ in 10 provinces to determine their social trends.Specifically, a simple linear regression model was used to determine the possible relationship between the age of a participant and the age of their first child was looked at. We are hypothesizing as an individual’s age increase the age of the first born will also increase. We found a significant relationship (p&lt;0.001) between age of the participant and age of their first child (R^2= 0.83 ± 0.095) with a 0.83 unit increase in the age of the first child for every year older the participant is. Therefore, this shows the older a participant is the older their first child is. The conclusions of this study is that population specific policies can be made knowing that the older this population is the older the age of their first child is thus childcare policies can be amended to better suit the needs of this specific population.</p>
+<p>The Canadian General Social Survey (GSS) is an important survey conducted yearly in Canada as it provides valuable information that then influences policies that are made to better the lives of Canadians. Specifically, a simple linear regression model was used to determine the possible relationship between the age of a participant and the age of their first child from the 2017 GSS. We found a statistically significant relationship (p&lt;0.001) between age of the participant and age of their first child (R^2= 0.83 ± 0.095) with a 0.83 unit increase in the age of the first child for every year older the participant is. The conclusions of this study is that population specific policies can be made knowing that the older this population is the older the age of their first child is thus childcare policies can be amended to better suit the needs of this specific population.</p>
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>The Canadian General Social Survey yearly collects data on social trends to gain an understanding on the changes in how Canadians live and their well-being to influence social policies. This survey is important as the data influences many government programs that have then improved the welfare of Canadians, led to more research about their social life and is used as a teaching tool in post-secondary institutions across Canada ( <span class="citation">Statistics (2017)</span> ). Every year there is a specific theme that the survey focuses on. Specifically, the 2017 GSS will be analyzed and the theme was family which is repeated every 5 years.</p>
-<p>The goal of this analysis is to determine if there is a correlation between the age of an individual and the age of their first child. This is an important analysis since understanding the trends of the age of the first children of this population can lead to a better comprehension of the population. This can also have a significant impact on the policies being made because depending on if the population has many individuals with lots of younger children then there may be need for policies specifically on child care to better help meet their needs. We are hypothesizing as an individual’s age increase the age of the first born will also increase.</p>
+<p>This report aims to determine the relationship between the age of an individual and the age of their first child. This is an important analysis since understanding the trends of the age of the first children of this population can lead to a better comprehension of the population. This can also have a significant impact on the policies being made because depending on if the population has many individuals with lots of younger children then there may be need for child care policies to better help meet their needs. Specifically, the age of the first child occurring early on in someone’s life is correlated with negative health outcomes (<span class="citation">Gibbs et al. (2015)</span>). Therefore, through the use of a simple linear regression model we aim to gain a further understanding of the correlation between the age of an individual and the age of their first born.</p>
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
@@ -50,7 +50,27 @@ mydata%&gt;%
 <p><img src="index_files/figure-html/splot-1.png" width="672" />
 Figure 1 This is a scatter plot graph depicting the linear relationship between the age of the participant</p>
 <p>Model results</p>
-<pre class="r"><code>summary(mysvylm) 
+<pre class="r"><code>library(survey)
+## Loading required package: grid
+## Loading required package: Matrix
+## 
+## Attaching package: &#39;Matrix&#39;
+## The following objects are masked from &#39;package:tidyr&#39;:
+## 
+##     expand, pack, unpack
+## Loading required package: survival
+## 
+## Attaching package: &#39;survey&#39;
+## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     dotchart
+library(broom)
+N=36193468
+n=20602
+fpc.srs= rep(N,n) 
+age.design &lt;- svydesign(id=~1, data=mydata, fpc=fpc.srs)
+mysvylm &lt;- svyglm(age ~ age_first_child, age.design)
+summary(mysvylm)
 ## 
 ## Call:
 ## svyglm(formula = age ~ age_first_child, design = age.design)
@@ -67,16 +87,45 @@ Figure 1 This is a scatter plot graph depicting the linear relationship between 
 ## 
 ## (Dispersion parameter for gaussian family taken to be 25.88)
 ## 
-## Number of Fisher Scoring iterations: 2</code></pre>
-<p>Figure 2 This shows the summary statistics of the simple linear regression model.</p>
+## Number of Fisher Scoring iterations: 2
+data&lt;- tidy(mysvylm)
+knitr::kable(data, align = &quot;lccrr&quot;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="center">estimate</th>
+<th align="center">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="center">31.6146488</td>
+<td align="center">0.0952618</td>
+<td align="right">331.8713</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">age_first_child</td>
+<td align="center">0.8284217</td>
+<td align="center">0.0023431</td>
+<td align="right">353.5621</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Figure 2 This shows the summary statistics of the simple linear regression model.The p value is really small as it’s &lt;2e-16 and therefore is shown as 0 in the table.</p>
 </div>
 <div id="discussion" class="section level1">
 <h1>Discussion</h1>
 <p>The scatter plot shows there is a linear relationship between the age of the participants and the age of the first child. This signifies that the simple linear regression model is the correct model to show the relationship between these variables. This survey model utilizes the quarter 1 population data in 2017 provided by the Canadian Census data as the survey is released in the first quarter excluding the territories (<span class="citation">Statistics (2020)</span>).</p>
-<p>The model results show a p value less than 0.05 signifying that there is a statistically significant allowing us to conclude that that there is a significant relationship between the age of a participant and the age of their first child (<span class="citation">Andrade (2019)</span>).</p>
-<p>The equation given from this model is:</p>
+<p>A null hypothesis signifies that there is no relationship between two variables. As there is a really small p value which is less than 0.05 this proves that the null hypothesis is false (<span class="citation">Andrade (2019)</span>). Further proof, is shown through the t value (statistic) being quite large as it’s in the 300’s (<span class="citation">Changbao and Thompson (2019)</span>). Together this demonstrates that there is a statistically significant relationship between the age of the participate and the age of their first child.</p>
+<p>The equation from the simple linear regression model is:</p>
 <pre><code>Age= 31.6 + 0.83*age of first child ± 0.095</code></pre>
-<p>We found a significant relationship (p&lt;0.001) between age of the participant and age of the first child (R^2= 0.83 ± 0.095) with a 0.83 unit increase in the age of the first child for every year older the participant is. Therefore, this shows the older a participant is the older their first child is.</p>
+<p>We found a significant relationship (p&lt;0.001) between age of the participant and age of the first child (R^2= 0.83 ± 0.095) with a 0.83 unit increase in the age of the first child for every year older the participant is. Therefore, this shows the older a participant is the older their first child is proving the hypothesis of this study.</p>
 <p>A caveat of this model is that it can not be used to predict values that are outside of the range (<span class="citation">Schneider, Hommel, and Blettner (2010)</span>). Therefore, this conclusion can only be applied to individuals within these provinces between the age of 15-80. Signifying that in another population with every unit increase of age, there may be a decrease in the age of their first child. This would imply that the age of the participants are older and they have younger children. As some participant’s did not have children their data was excluded from the analysis.</p>
 <p>Therefore, by understanding in this specific population, that as age increases the age of their first child also increases this can have a significant impact on the policies made for Canadians. These results also have larger implications as there are studies that have shown that there are significant health complications in young moms (15-19) giving birth (<span class="citation">Gibbs et al. (2015)</span>). This is mainly something seen in developing countries and not Canada, nonetheless surveys such as these that are probing what is occurring within provinces allow us to ensure that there are the necessary policies to help individuals that may be dealing with these issues. Basing policies solely on what is expected to happen within a country will not effectively meet the needs of the specific population as every population is slightly different. Therefore, this shows that this population is following the expected trend for developed countries (<span class="citation">Gibbs et al. (2015)</span>).</p>
 </div>
