@@ -13,8 +13,6 @@ knitr::opts_chunk$set(collapse = TRUE)
 mydata<-read.csv("gss.csv")
 library(tidyverse)
 
-
-
 ```
  
 # Positive relationship between Age of an Individual and the Age of their First Child
@@ -22,7 +20,8 @@ library(tidyverse)
 
 # Abstract
 
-The Canadian General Social Survey (GSS) is an important survey conducted yearly in Canada as it provides valuable information that then influences policies that are made to better the lives of Canadians. Specifically, a simple linear regression model was used to determine the possible relationship between the age of a participant and the age of their first child from the 2017 GSS.  We found a statistically significant relationship (p<0.001) between age of the participant and age of their first child (R^2= 0.83 ± 0.095) with a 0.83 unit increase in the age of the first child for every year older the participant is. The conclusions of this study is that population specific policies can be made knowing that the older this population is the older the age of their first child is thus childcare policies can be amended to better suit the needs of this specific population.  
+The Canadian General Social Survey (GSS) is an important survey conducted yearly in Canada as it provides valuable information that then influences policies that are made to better the lives of Canadians. Specifically, a simple linear regression model was used to determine the possible relationship between the age of a participant and the age of their first child from the 2017 GSS.  We found a statistically significant relationship (p<0.001) between age of the participant and age of their first child (R^2= 0.83 ± 0.095) with a 0.83 unit increase in the age of the first child for every year older the participant is. The conclusions of this study is that population specific policies can be made knowing that the older this population is the older the age of their first child is thus childcare policies can be amended to better suit the needs of this specific population.
+
 
 
 
