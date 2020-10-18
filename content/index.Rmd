@@ -13,8 +13,6 @@ knitr::opts_chunk$set(collapse = TRUE)
 mydata<-read.csv("gss.csv")
 library(tidyverse)
 
-
-
 ```
  
 # Positive relationship between Age of an Individual and the Age of their First Child
