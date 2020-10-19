@@ -1,5 +1,5 @@
 ---
-title: "There is a Positive Relationship between Age of an Individual and the Age of their First Child"
+title: "There is a Positive Relationship between the Age of an Individual and the Age of their First Child"
 author: "Maha Mohamed"
 date: 2015-07-23T21:13:14-05:00
 bibliography: "references.bib"
@@ -86,6 +86,8 @@ knitr::kable(data, align = "lccrr")
 Figure 2 This shows the summary statistics of the simple linear regression model.The p value is really small as it's <2e-16 and therefore is shown as 0 in the table.
 
 # Discussion
+
+  The Canadian General Social Survey covers different themes every year and for 2017 the theme was family. Therefore, by specifically looking at the age of the participant and the age of the first child familial trends of Canadians can be examined. The survey was stratified based off of provinces in order to collect it. The data that is analyzed is of all of the provinces which can allow us to have a generalized understanding of Canadians since it was a large population size and randomized for everyone aged 15-80.As some participant's did not have children their data was excluded from the analysis.
 
   The scatter plot shows there is a linear relationship between the age of the participants and the age of the first child. This signifies that the simple linear regression model is the correct model to show the relationship between these variables. This survey model utilizes the quarter 1 population data in 2017 provided by the Canadian Census data as the survey is released in the first quarter excluding the territories (@citecensus).
   
