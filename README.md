@@ -1,5 +1,5 @@
-# GSSAnalysis
+# Analyzing the Effects of Phone Usage on Sleep Quality
 
 
 #About
-This is an analysis of the 2017 General Social Survey specifically running a general linear regression model to see the strength of the relationship between the age of the participant and the age of their first child. 
+Phone addiction's possible impact on sleep quality is important as this has a direct impact on individual health correlating to the productivity of society. In this report, the data was simulated from Demrici et al.'s 2015 study on sleep quality and phone usage in 319 students enrolled in a public Turkish university. Propensity score matching showed that 311 students did not have the treatment and 8 students did, through a linear regression model it showed that there was no statistically significant impact of gender, age, smartphone usage, family income on the amount of sleep a student had. This is conflicting with the findings of Demerici et al.'s study and suggests that further research on sleep quality and smartphone usage should be conducted as this has greater implications on health.
